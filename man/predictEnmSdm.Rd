@@ -192,8 +192,8 @@ maps <- c(
 	rfMap
 )
 
-names(maps) <- c('MaxEnt', 'MaxNet', 'GLM', 'GAM', 'Natural Splines', 'BRTs', 'RFs')
-fun <- function() plot(occs[1], col='black', add=TRUE)
+names(maps) <- c('MaxEnt', 'MaxNet', 'GLM', 'GAM', 'NSs', 'BRTs', 'RFs')
+fun <- function() plot(occs, col='black', pch=3, add=TRUE)
 plot(maps, fun = fun, nc = 4)
 
 ### compare model responses to BIO12 (mean annual precipitation)
@@ -258,5 +258,5 @@ legend(
 }
 }
 \seealso{
-\code{\link[stats]{predict}} from the \pkg{stats} package, \code{\link[terra]{predict}} from the \pkg{terra} package, \code{\link[raster]{predict}} from the \pkg{raster} package, \code{\link[enmSdmX]{predictMaxEnt}}, \code{\link[enmSdmX]{predictMaxNet}}
+\code{\link[stats]{predict}} from the \pkg{stats} package, \code{\link[terra]{predict}} from the \pkg{terra} package, \code{\link[enmSdmX]{predictMaxEnt}}, \code{\link[enmSdmX]{predictMaxNet}}
 }
