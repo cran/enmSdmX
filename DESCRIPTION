@@ -1,8 +1,8 @@
 Package: enmSdmX
 Type: Package
 Title: Species Distribution Modeling and Ecological Niche Modeling
-Version: 1.0.3
-Date: 2023-03-07
+Version: 1.0.4
+Date: 2023-04-10
 Authors@R: 
 	c(
 		person(
@@ -31,7 +31,7 @@ Depends: R (>= 4.0.0)
 Imports: boot, dismo, doParallel, DT, foreach, gbm, graphics, ks,
         maxnet, methods, mgcv, MuMIn, omnibus, parallel, randomForest,
         rJava, scales, shiny, sf, stats, terra, utils
-Suggests: ecospat, geodata
+Suggests: geodata
 LazyData: true
 LazyLoad: yes
 URL: https://github.com/adamlilith/enmSdmX
@@ -40,7 +40,7 @@ Encoding: UTF-8
 License: MIT + file LICENSE
 RoxygenNote: 7.2.3
 NeedsCompilation: no
-Packaged: 2023-03-08 18:34:30 UTC; adam
+Packaged: 2023-04-19 19:23:54 UTC; adam
 Author: Adam B. Smith [cre, aut] (<https://orcid.org/0000-0002-6420-1659>)
 Repository: CRAN
-Date/Publication: 2023-03-10 22:40:05 UTC
+Date/Publication: 2023-04-19 21:00:02 UTC
