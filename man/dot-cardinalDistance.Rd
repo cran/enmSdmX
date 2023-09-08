@@ -43,8 +43,6 @@
 \item{x1weightedElev}{Matrix of elevations weighted by x1 or \code{NULL}.}
 
 \item{x2weightedElev}{Matrix of elevations weighted by x2 or \code{NULL}.}
-
-\item{refLat}{Numeric, latitude of reference point.}
 }
 \value{
 a list object with distance moved and abundance of all cells north/south/east/west of reference point.

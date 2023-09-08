@@ -4,7 +4,12 @@
 \alias{summaryByCrossValid}
 \title{Summarize distribution/niche model cross-validation object}
 \usage{
-summaryByCrossValid(x, metric = "cbiTest", decreasing = TRUE)
+summaryByCrossValid(
+  x,
+  metric = "cbiTest",
+  decreasing = TRUE,
+  interceptOnly = TRUE
+)
 }
 \arguments{
 \item{x}{The output from the \code{\link{trainByCrossValid}} function (which is a list). Note that the object \emph{must} include a sublist named \code{tuning}.}
@@ -22,6 +27,8 @@ summaryByCrossValid(x, metric = "cbiTest", decreasing = TRUE)
 }}
 
 \item{decreasing}{Logical, if \code{TRUE} (default), for each k-fold sort models by the value listed in \code{metric} in decreasing order (highest connotes "best", lowest "worst"). If \code{FALSE} use the lowest value of \code{metric}.}
+
+\item{interceptOnly}{Logical. If \code{TRUE} (default) and the top models in each case were intercept-only models, return an emppty data frame (with a warning). If \code{FALSE}, return results using the first model in each fold that was not an intercept-only model. This is only used if the training function was a generalized linear model (GLM), natural splines model (NS), or generalized additive model (GAM).}
 }
 \value{
 Data frame with statistics on the best set of models across k-folds. Depending on the model algorithm, this could be:
@@ -30,7 +37,7 @@ Data frame with statistics on the best set of models across k-folds. Depending o
 	\item GLMs (generalized linear models): Frequency of use of each term in the best models.
 	\item Maxent: Frequency of times each specific combination of feature classes was used in the best models plus mean master regularization multiplier for each feature set.
 	\item NSs (natural splines): Data frame, one row per fold and one column per predictor, with values representing the maximum degrees of freedom used for each variable in the best model of each fold.
-	\item RFs (random forests): Data frame, one row per fold, with values representing the optimal value of \code{mtry} (see \code{\link[randomForest]{randomForest}}).
+	\item RFs (random forests): Data frame, one row per fold, with values representing the optimal value of \code{numTrees} and \code{mtry} (see \code{\link[ranger]{ranger}}).
 }
 }
 \description{
