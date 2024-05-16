@@ -8,6 +8,8 @@
 #'
 #' @param maxentFun	This argument is only used if the \code{model} object is a MaxEnt model; otherwise, it is ignored. It takes a value of either \code{'terra'}, in which case a MaxEnt model is predicted using the default \code{predict} function from the \pkg{terra} package, or \code{'enmSdmX'} in which case the function \code{\link[enmSdmX]{predictMaxEnt}} function from the \pkg{enmSdmX} package (this package) is used.
 #'
+#' @param scale Logical. If the model is a GLM trained with \code{\link{trainGLM}}, you can use the \code{scale} argument in that function to center and scale the predictors. In the \code{predictEnmSdm} function, you can set \code{scale} to \code{TRUE} to scale the rasters or data frame to which you are training using the centers (means) and scales (standard deviations) used in the mode. Otherwise, it is up to you to ensure variables are properly centered and scaled. This argument only has effect if the model is a GLM trained using \code{\link{trainGLM}}.
+#'
 #' @param cores	 Integer >= 1. Number of cores to use when calculating multiple models. Default is 1. This is forced to 1 if \code{newdata} is a \code{SpatRaster} (i.e., as of now, there is no parallelization when predicting to a raster... sorry!).  If you have issues when \code{cores} > 1, please see the \code{\link{troubleshooting_parallel_operations}} guide.
 #'
 #' @param nrows		Number of rows of \code{newdata} to predict at a time. This is only used if \code{newdata} is a \code{data.frame} or \code{matrix}. The default is to predict all rows at once, but for very large data frames/matrices this can lead to memory issues in some cases. By setting the number of rows, \code{newdata} is divided into chunks, and predictions made to each chunk, which may ease memory limitations. This can be combined with multi-coring (which will increase memory requirements). In this case, all cores combined will get \code{nrows} of data. How many rows are too many? You will have to decide depending on the capabilities of your system. For example, predicting the outcome of a GLM on data with 10E6 rows may be fine, but predicting a PCA (with multiple axes) to the data data may require too much memory.
@@ -27,6 +29,7 @@ predictEnmSdm <- function(
 	model,
 	newdata,
 	maxentFun = 'terra',
+	scale = TRUE,
 	cores = 1,
 	nrows = nrow(newdata),
 	paths = .libPaths(),
@@ -133,10 +136,29 @@ predictEnmSdm <- function(
 		# GLM
 		} else if (inherits(model, c('glm'))) {
 
-			out <- if (inherits(newdata, c('SpatRaster'))) {
-				terra::predict(newdata, model, type='response', ...)
+			# center and scale... match names of newdata to pre-calculated centers/scales in GLM object saved by trainGLM()
+			if (scale && any(names(model) == 'scale')) {
+				
+				scaling <- TRUE
+				centers <- model$scale$mean
+				scales <- model$scale$sd
+				nms <- names(newdata)
+				centers <- centers[match(nms, names(centers))]
+				scales <- scales[match(nms, names(scales))]
+				
 			} else {
-				stats::predict.glm(model, newdata, type='response', ...)
+				scaling <- FALSE
+			}
+
+			if (inherits(newdata, c('SpatRaster'))) {
+				if (scaling) newdata <- terra::scale(newdata, center = centers, scale = scales)
+				out <- terra::predict(newdata, model, type='response', ...)
+			} else {
+				if (scaling) {
+					newdata <- scale(newdata, center = centers, scale = scales)
+					newdata <- as.data.frame(newdata)
+				}
+				out <- stats::predict.glm(model, newdata, type='response', ...)
 			}
 
 		# LM
@@ -166,10 +188,28 @@ predictEnmSdm <- function(
 			# hack... not calling ks functions explicitly at least once in package generates warning
 			if (FALSE) fhat <- ks::kde(stats::rnorm(100))
 			predictKde <- utils::getFromNamespace('predict.kde', 'ks')
-			out <- predictKde(model, x=as.matrix(newdata), ...)
+			newdataMatrix <- as.matrix(newdata)
+			n <- nrow(newdataMatrix)
+			notNas <- which(stats::complete.cases(newdataMatrix))
+			newdataMatrix <- newdataMatrix[notNas, ]
+			preds <- predictKde(model, x = newdataMatrix, ...)
+
+			if (inherits(newdata, "SpatRaster")) {
+						
+				out <- newdata[[1L]]
+				out[] <- NA_real_
+				out <- setValueByCell(out, preds, cell=notNas, format='raster')
+				names(out) <- 'kde'
+			
+			} else {
+			
+				out <- rep(NA_real_, n)
+				out[notNas] <- preds
+
+			}
 
 		# Maxent
-		} else if (inherits(model, 'MaxEnt')) {
+		} else if (inherits(model, c('MaxEnt', 'MaxEnt_model'))) {
 
 			out <- if (maxentFun == 'terra') {
 				terra::predict(model, newdata, ...)
@@ -213,7 +253,6 @@ predictEnmSdm <- function(
 			} else {
 				model$binary
 			}
-
 
 			if (inherits(newdata, 'SpatRaster')) {
 

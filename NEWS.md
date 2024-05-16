@@ -1,3 +1,17 @@
+# enmSdmX 1.1.5 2023-04-10
+- Added function `trainESM()` for ensembles of small models.
+- Added several UTM coordinate reference systems accessible through `getCRS()`.
+- Fixed bug in `precidtEnmSdm()` for predicting kernel density models from the **ks** package.
+
+# enmSdmX 1.1.3 2023-03-06
+- `trainGLM()`,  `trainNS()`, and `predictEnmSdm()` now have options to automatically center and scale predictors.
+
+# enmSdmX 1.1.3 2023-02-02
+- Removed dependency on `dismo`, replaced where possible by `predicts`; copied `gbm.step()` and `predict()` method for MaxEnt to `enmSdmX` as a momentary fix; would love a professional solution!
+- Added European Datum 1950 (ED50) to coordinate reference systems table
+- Added ability to export intermediate values for plotting in `evalContBoyce()`
+- Fixed spelling errors in `crss` data table (coordinate reference system names)
+
 # enmSdmX 1.1.2 2023-09-07
 - Minor issue fixes with undocumented arguments for non-exported functions
 - Bug fix in `squareCellRast()` that occurred on Linux/Fedora

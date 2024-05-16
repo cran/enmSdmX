@@ -1,8 +1,8 @@
 Package: enmSdmX
 Type: Package
 Title: Species Distribution Modeling and Ecological Niche Modeling
-Version: 1.1.2
-Date: 2023-09-07
+Version: 1.1.5
+Date: 2024-05-16
 Authors@R: 
 	c(
 		person(
@@ -13,7 +13,6 @@ Authors@R:
 			comment = c(ORCID = '0000-0002-6420-1659')
 		)
 	)
-Maintainer: Adam B. Smith <adam.smith@mobot.org>
 Description: Implements species distribution modeling and ecological niche
 	modeling, including: bias correction, spatial cross-validation, model
 	evaluation, raster interpolation, biotic "velocity" (speed and
@@ -28,10 +27,10 @@ Description: Implements species distribution modeling and ecological niche
 	The package works with 'PROJ6' geodetic objects and coordinate reference
 	systems.
 Depends: R (>= 4.0.0)
-Imports: boot, data.table, dismo, doParallel, DT, foreach, gbm,
-        graphics, ks, maxnet, methods, mgcv, MuMIn, omnibus, parallel,
-        ranger, rJava, scales, sf, shiny, statisfactory, stats, terra,
-        utils
+Imports: boot, data.table, doParallel, DT, foreach, gbm, graphics, ks,
+        maxnet, methods, mgcv, MuMIn, omnibus, parallel, predicts,
+        ranger, rJava, scales, sf, shiny, sp, statisfactory, stats,
+        terra, utils
 Suggests: geodata
 LazyData: true
 LazyLoad: yes
@@ -39,9 +38,10 @@ URL: https://github.com/adamlilith/enmSdmX
 BugReports: https://github.com/adamlilith/enmSdmX
 Encoding: UTF-8
 License: MIT + file LICENSE
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 NeedsCompilation: no
-Packaged: 2023-09-08 17:50:06 UTC; adam
+Packaged: 2024-05-16 21:44:31 UTC; asmith
 Author: Adam B. Smith [cre, aut] (<https://orcid.org/0000-0002-6420-1659>)
+Maintainer: Adam B. Smith <adam.smith@mobot.org>
 Repository: CRAN
-Date/Publication: 2023-09-08 18:10:02 UTC
+Date/Publication: 2024-05-16 22:00:03 UTC

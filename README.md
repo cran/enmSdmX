@@ -3,7 +3,6 @@
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![cran version](https://www.r-pkg.org/badges/version/enmSdmX)](https://cran.r-project.org/package=enmSdmX)
-
 <!-- badges: end -->
 
 <strong>Tools for modeling niches and distributions of species </strong>
@@ -42,6 +41,7 @@ You may need to install the `remotes` package first.
 ### Model training ###
 * `trainByCrossValid` and `summaryByCrossValid`: Calibrate a distribution/niche model using cross-validation
 * `trainBRT`: Boosted regression trees (BRTs)
+* `trainESM`: Ensembles of small models (ESMs)
 * `trainGAM`: Generalized additive models (GAMs)
 * `trainGLM`: Generalized linear models (GLMs)
 * `trainMaxEnt`: MaxEnt models

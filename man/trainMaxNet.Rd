@@ -192,14 +192,14 @@ rf <- trainRF(
 ### make maps of models
 #######################
 
-# Create scaled version of rasters for GLMs and NSs.
-madClimScaled <- scale(madClim, center=gl$scale$mean, scale=gl$scale$sd)
+# NB We do not have to scale rasters before predicting GLMs and NSs because we
+# used the `scale = TRUE` argument in trainGLM() and trainNS().
 
 mxMap <- predictEnmSdm(mx, madClim)
 mnMap <- predictEnmSdm(mn, madClim) 
-glMap <- predictEnmSdm(gl, madClimScaled)
+glMap <- predictEnmSdm(gl, madClim)
 gaMap <- predictEnmSdm(ga, madClim)
-nsMap <- predictEnmSdm(ns, madClimScaled)
+nsMap <- predictEnmSdm(ns, madClim)
 brtMap <- predictEnmSdm(brt, madClim)
 rfMap <- predictEnmSdm(rf, madClim)
 
@@ -283,5 +283,5 @@ Phillips, S.J., Anderson, R.P., Dudík, M. Schapire, R.E., and Blair, M.E.  2017
 Warren, D.L. and S.N. Siefert. 2011. Ecological niche modeling in Maxent: The importance of model complexity and the performance of model selection criteria. \emph{Ecological Applications} 21:335-342. \doi{10.1890/10-1171.1}
 }
 \seealso{
-\code{\link[maxnet]{maxnet}}, \code{\link[dismo]{maxent}}, \code{\link{trainMaxEnt}}
+\code{\link[maxnet]{maxnet}}, \code{\link[predicts]{MaxEnt}}, \code{\link{trainMaxEnt}}
 }

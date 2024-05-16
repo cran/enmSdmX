@@ -2,8 +2,8 @@
 % Please edit documentation in R/enmSdmX.r
 \docType{package}
 \name{enmSdmX}
-\alias{enmSdmX}
 \alias{enmSdmX-package}
+\alias{enmSdmX}
 \title{enmSdmX: Species distribution modeling and ecological niche modeling}
 \description{
 Tools for implementing species distribution models and ecological niche models, including: bias correction, spatial cross-validation, model evaluation, raster interpolation, biotic "velocity" (speed and direction of movement of a "mass" represented by a raster), and tools for using spatially imprecise records. The heart of the package is a set of "training" functions which automatically optimize model complexity based number of available occurrences. These algorithms include MaxEnt, MaxNet, boosted regression trees/gradient boosting machines, generalized additive models, generalized linear models,	natural splines, and random forests. To enhance interoperability to and from other packages, the package does not create any new classes. The package works with PROJ6 geodetic objects and coordinate reference systems.\cr \cr
@@ -35,7 +35,8 @@ Create an issue on \href{https://github.com/adamlilith/enmSdmX/issues}{GitHub}.
 
 		\code{\link{trainByCrossValid}}: and \code{\link{summaryByCrossValid}}: Implement a \code{trainXYZ} function across calibration folds (which are distinct from evaluation folds). \cr
 		\code{\link{trainBRT}}: Boosted regression trees (BRTs) \cr
-		\code{\link{trainGAM}}: Generalized additive models (GAMs) \cr
+		\code{\link{trainESM}}: Ensembles of small models (ESMs) \cr
+		\code{\link{trainGLM}}: Generalized linear models (GLMs) \cr
 		\code{\link{trainGLM}}: Generalized linear models (GLMs) \cr
 		\code{\link{trainMaxEnt}}: MaxEnt models \cr
 	\code{\link{trainMaxNet}}: MaxNet models
