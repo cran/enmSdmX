@@ -1,4 +1,7 @@
-# enmSdmX 1.1.5 2023-04-10
+# enmSdmX 1.1.6 2024-06-06
+- Replaced dependency on **MuMIn** with one one **AICcmodavg** for calculation of AICc. Received warning that **MuMIn** was going to be archived on CRAN.
+
+# enmSdmX 1.1.5 2024-05-16
 - Added function `trainESM()` for ensembles of small models.
 - Added several UTM coordinate reference systems accessible through `getCRS()`.
 - Fixed bug in `precidtEnmSdm()` for predicting kernel density models from the **ks** package.
