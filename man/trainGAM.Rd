@@ -31,7 +31,7 @@ trainGAM(
 
 \item{resp}{Response variable. This is either the name of the column in \code{data} or an integer indicating the column in \code{data} that has the response variable. The default is to use the first column in \code{data} as the response.}
 
-\item{preds}{Character list or integer list. Names of columns or column indices of predictors. The default is to use the second and subsequent columns in \code{data}.}
+\item{preds}{Character vector or integer vector. Names of columns or column indices of predictors. The default is to use the second and subsequent columns in \code{data}.}
 
 \item{gamma}{Initial penalty to degrees of freedom to use (larger ==> smoother fits).}
 
@@ -39,7 +39,7 @@ trainGAM(
 
 \item{smoothingBasis}{Character. Indicates the type of smoothing basis. The default is \code{'cs'} (cubic splines), but see \code{\link[mgcv]{smooth.terms}} for other options. This is the value of argument \code{bs} in a \code{\link[mgcv]{s}} function.}
 
-\item{interaction}{Character or \code{NULL}. Type of interaction term to use (\code{te}, \code{ts}, \code{s}, etc.). See \code{?te} (for example) for help on any one of these. If \code{NULL} then interactions are not used.}
+\item{interaction}{Character or \code{NULL}. Type of interaction term to use (\code{te}, \code{ts}, \code{s}, etc.). See \code{?te} (for example) for help on any one of these. If \code{NULL}, then interactions are not used.}
 
 \item{interceptOnly}{If \code{TRUE} (default) and model selection is enabled, then include an intercept-only model.}
 

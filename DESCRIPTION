@@ -1,8 +1,8 @@
 Package: enmSdmX
 Type: Package
 Title: Species Distribution Modeling and Ecological Niche Modeling
-Version: 1.1.6
-Date: 2024-06-13
+Version: 1.1.9
+Date: 2024-11-01
 Authors@R: 
 	c(
 		person(
@@ -34,13 +34,13 @@ Imports: AICcmodavg, boot, data.table, doParallel, DT, foreach, gbm,
 LazyData: true
 LazyLoad: yes
 URL: https://github.com/adamlilith/enmSdmX
-BugReports: https://github.com/adamlilith/enmSdmX
+BugReports: https://github.com/adamlilith/enmSdmX/issues
 Encoding: UTF-8
 License: MIT + file LICENSE
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 NeedsCompilation: no
-Packaged: 2024-06-14 03:14:55 UTC; adame
+Packaged: 2024-11-03 02:18:16 UTC; adame
 Author: Adam B. Smith [cre, aut] (<https://orcid.org/0000-0002-6420-1659>)
 Maintainer: Adam B. Smith <adam.smith@mobot.org>
 Repository: CRAN
-Date/Publication: 2024-06-14 03:30:02 UTC
+Date/Publication: 2024-11-03 07:40:02 UTC
