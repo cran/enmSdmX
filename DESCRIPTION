@@ -1,8 +1,8 @@
 Package: enmSdmX
 Type: Package
 Title: Species Distribution Modeling and Ecological Niche Modeling
-Version: 1.2.10
-Date: 2024-12-10
+Version: 1.2.12
+Date: 2025-03-289
 Authors@R: 
 	c(
 		person(
@@ -27,10 +27,11 @@ Description: Implements species distribution modeling and ecological niche
 	The package works with 'PROJ6' geodetic objects and coordinate reference
 	systems.
 Depends: R (>= 4.0.0)
-Imports: AICcmodavg, boot, data.table, doParallel, DT, foreach, gbm,
-        graphics, ks, maxnet, methods, mgcv, omnibus, parallel,
-        predicts, ranger, rJava, scales, sf, shiny, sp, statisfactory,
-        stats, terra, utils
+Imports: AICcmodavg, boot, cowplot, data.table, doParallel, DT,
+        foreach, gbm, ggplot2, graphics, ks, maxnet, methods, mgcv,
+        omnibus, parallel, predicts, ranger, rJava, scales, sf, shiny,
+        sp, statisfactory, stats, terra, utils
+Suggests:
 LazyData: true
 LazyLoad: yes
 URL: https://github.com/adamlilith/enmSdmX
@@ -39,8 +40,8 @@ Encoding: UTF-8
 License: MIT + file LICENSE
 RoxygenNote: 7.3.2
 NeedsCompilation: no
-Packaged: 2024-12-11 02:19:19 UTC; adame
+Packaged: 2025-03-29 05:15:57 UTC; adame
 Author: Adam B. Smith [cre, aut] (<https://orcid.org/0000-0002-6420-1659>)
 Maintainer: Adam B. Smith <adam.smith@mobot.org>
 Repository: CRAN
-Date/Publication: 2024-12-11 10:10:08 UTC
+Date/Publication: 2025-03-29 05:30:08 UTC
